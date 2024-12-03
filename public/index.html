@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIG</title>
+</head>
+<body>
+    <button onclick="generateIdea()">Generate</button>
+    <div class="output" id="output"></div>
+    <script>
+        async function generateIdea() {
+            const outputDiv = document.getElementById('output');
+            outputDiv.innerHTML = "Loading...";
+
+            try {
+                const response = await fetch('http://localhost:5000/api/generate-ideas', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({}), // No custom prompt, backend uses the static prompt
+                });
+
+                const data = await response.json();
+
+                if (Array.isArray(data) && data.length > 0) {
+                    outputDiv.innerHTML = data.map((idea) => `<p>${idea}</p>`).join('');
+                } else {
+                    outputDiv.innerHTML = "No ideas generated or an error occurred.";
+                }
+            } catch (error) {
+                outputDiv.innerHTML = "An error occurred while generating ideas.";
+                console.error(error);
+            }
+        }
+    </script>
+</body>
+</html>
