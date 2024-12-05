@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saved Ideas</title>
+</head>
+<body>
+    <h1>Saved Ideas</h1>
+    <ul id="saved-ideas-list"></ul>
+    <button onclick="clearAll()">Clear All</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedIdeas = JSON.parse(localStorage.getItem('savedIdeas')) || [];
+            const savedIdeasList = document.getElementById('saved-ideas-list');
+
+            savedIdeas.forEach((idea, index) => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    ${idea} <button onclick="deleteIdea(${index})">Delete</button>
+                `;
+                savedIdeasList.appendChild(li);
+            });
+        });
+
+        function deleteIdea(index) {
+            const savedIdeas = JSON.parse(localStorage.getItem('savedIdeas')) || [];
+            savedIdeas.splice(index, 1)
+            localStorage.setItem('savedIdeas', JSON.stringify(savedIdeas));
+            window.location.reload();
+        }
+
+        function clearAll() {
+            localStorage.removeItem('savedIdeas');
+            window.location.reload();
+        }
+    </script>
+</body>
+</html>

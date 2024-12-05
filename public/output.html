@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generated Ideas</title>
+</head>
+<body>
+    <div class="header">
+        <div class="title">Generated Ideas</div>
+        <button onclick="window.location.href='index.html'" class="headerButton">Back</button>
+    </div>
+
+    <div id="generatedIdeasList"></div>
+    
+    <button onclick="saveSelected()">Save Selected Ideas</button>
+
+    <script>
+        let generatedIdeas = [];
+
+        // Load the generated ideas from localStorage
+        function loadGeneratedIdeas() {
+            const storedIdeas = JSON.parse(localStorage.getItem('generatedIdeas')) || [];
+            const generatedIdeasList = document.getElementById('generatedIdeasList');
+
+            if (storedIdeas.length > 0) {
+                generatedIdeasList.innerHTML = storedIdeas.map((idea, index) => `
+                    <div>
+                        <input type="checkbox" id="idea-${index}" value="${idea}">
+                        <label for="idea-${index}">${idea}</label>
+                    </div>
+                `).join('');
+                generatedIdeas = storedIdeas;
+            } else {
+                generatedIdeasList.innerHTML = "No ideas available.";
+            }
+        }
+
+        function saveSelected() {
+            const selectedIdeas = [];
+            generatedIdeas.forEach((idea, index) => {
+                const checkbox = document.getElementById(`idea-${index}`);
+                if (checkbox && checkbox.checked) {
+                    selectedIdeas.push(idea);
+                }
+            });
+
+            if (selectedIdeas.length > 0) {
+                const savedIdeas = JSON.parse(localStorage.getItem('savedIdeas')) || [];
+                savedIdeas.push(...selectedIdeas);
+                localStorage.setItem('savedIdeas', JSON.stringify(savedIdeas));
+                alert("Selected ideas saved!");
+            } else {
+                alert("Please select at least one idea to save.");
+            }
+        }
+
+        // Load generated ideas on page load
+        loadGeneratedIdeas();
+    </script>
+</body>
+</html>
