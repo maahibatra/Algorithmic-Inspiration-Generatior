@@ -30,10 +30,10 @@ app.post('/api/generate-ideas', async (req, res) => {
 
         if (generatedText) {
             const cleanText = generatedText.split('\n').slice(1).join('\n').trim();
-
             const ideas = cleanText.split('\n').filter(line => line.trim());
+            const limitedIdeas = ideas.slice(0, 5);
 
-            res.status(200).json(ideas);
+            res.status(200).json(limitedIdeas);
         } else {
             res.status(500).json({ error: 'No ideas generated.' });
         }
