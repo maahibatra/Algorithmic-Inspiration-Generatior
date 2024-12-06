@@ -8,13 +8,18 @@
 <body>
     <div class="header">
         <div class="title">AIG</div>
-        <button onclick="generateIdea()" class="headerButton">Generate</button>
         <button class="headerButton" onclick="window.location.href='saved.html'">Saved</button>
+        <button class="headerButton" onclick="generateIdea(), saveInputPrompt(), window.location.href='output.html'">Generate</button>
     </div>
     <input type="text" id="input" placeholder="Enter prompt">
     <div class="output" id="output"></div>
 
     <script>
+        function saveInputPrompt() {
+            const input = document.getElementById('input').value;
+            localStorage.setItem('inputPrompt', input);
+        }
+
         async function generateIdea() {
             const input = document.getElementById('input');
             const output = document.getElementById('output');
@@ -39,11 +44,7 @@
                         </div>
                     `).join('');
 
-                    // Store the generated ideas in localStorage
                     localStorage.setItem('generatedIdeas', JSON.stringify(data));
-
-                    // Redirect to output.html
-                    window.location.href = 'output.html';
                 } else {
                     output.innerHTML = "No ideas generated or an error occurred.";
                 }

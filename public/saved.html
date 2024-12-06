@@ -6,9 +6,13 @@
     <title>Saved Ideas</title>
 </head>
 <body>
-    <h1>Saved Ideas</h1>
+    <div class="header">
+        <div class="title">AIG - Saved</div>
+        <button class="headerButton" onclick="window.location.href='index.html'">Home</button>
+        <button class="headerButton" onclick="window.location.href='saved.html'">Saved</button>
+        <button onclick="clearAll()" class="headerButton">Clear All</button>
+    </div>
     <ul id="saved-ideas-list"></ul>
-    <button onclick="clearAll()">Clear All</button>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {

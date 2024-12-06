@@ -7,32 +7,53 @@
 </head>
 <body>
     <div class="header">
-        <div class="title">Generated Ideas</div>
-        <button onclick="window.location.href='index.html'" class="headerButton">Back</button>
+        <div class="title">AIG - Output</div>
+        <button class="headerButton" onclick="window.location.href='index.html'">Home</button>
+        <button class="headerButton" onclick="window.location.href='saved.html'">Saved</button>
+        <button onclick="saveSelected()" class="headerButton">Save Selected Ideas</button>
     </div>
 
+    <div id="inputPrompt"></div>
     <div id="generatedIdeasList"></div>
-    
-    <button onclick="saveSelected()">Save Selected Ideas</button>
 
     <script>
         let generatedIdeas = [];
 
-        // Load the generated ideas from localStorage
         function loadGeneratedIdeas() {
-            const storedIdeas = JSON.parse(localStorage.getItem('generatedIdeas')) || [];
+            const inputPrompt = document.getElementById('inputPrompt');
             const generatedIdeasList = document.getElementById('generatedIdeasList');
 
-            if (storedIdeas.length > 0) {
-                generatedIdeasList.innerHTML = storedIdeas.map((idea, index) => `
-                    <div>
-                        <input type="checkbox" id="idea-${index}" value="${idea}">
-                        <label for="idea-${index}">${idea}</label>
-                    </div>
-                `).join('');
-                generatedIdeas = storedIdeas;
+            const storedPrompt = localStorage.getItem('inputPrompt');
+            inputPrompt.innerHTML = `<strong>Input Prompt:</strong> ${storedPrompt}`;
+
+            if (storedPrompt) {
+                fetch('http://localhost:5000/api/generate-ideas', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ prompt: storedPrompt })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (Array.isArray(data) && data.length > 0) {
+                        generatedIdeas = data;
+                        generatedIdeasList.innerHTML = data.map((idea, index) => `
+                            <div>
+                                <input type="checkbox" id="idea-${index}" value="${idea}">
+                                <label for="idea-${index}">${idea}</label>
+                            </div>
+                        `).join('');
+                    } else {
+                        generatedIdeasList.innerHTML = "No ideas available.";
+                    }
+                })
+                .catch(error => {
+                    generatedIdeasList.innerHTML = "An error occurred while generating ideas.";
+                    console.error(error);
+                });
             } else {
-                generatedIdeasList.innerHTML = "No ideas available.";
+                generatedIdeasList.innerHTML = "No input prompt found.";
             }
         }
 
@@ -55,8 +76,7 @@
             }
         }
 
-        // Load generated ideas on page load
-        loadGeneratedIdeas();
+        window.onload = loadGeneratedIdeas;
     </script>
 </body>
 </html>
