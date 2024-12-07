@@ -25,21 +25,27 @@
     </div>
     <div id="generatedIdeasList" class="ideasOutput">No ideas yet. Enter a prompt to generate ideas.</div>
 
+    <div id="popup" class="popup">
+        <div class="popupContent">
+            <div id="popupMessage" class="popupMessage"></div>
+            <button class="popupClose" onclick="closePopup()">Close</button>
+        </div>
+    </div>    
+
     <script>
         let generatedIdeas = [];
-
+    
         async function generateIdea() {
             const input = document.getElementById('input').value.trim();
             const output = document.getElementById('generatedIdeasList');
-            const saveButton = document.getElementById('saveButton');
-
+    
             if (!input) {
-                output.innerHTML = "Please enter a prompt.";
+                showPopup("Please enter a prompt.");
                 return;
             }
-
+    
             output.innerHTML = "Loading...";
-
+    
             try {
                 const response = await fetch('http://localhost:5000/api/generate-ideas', {
                     method: 'POST',
@@ -48,26 +54,27 @@
                     },
                     body: JSON.stringify({ prompt: input })
                 });
-
+    
                 const data = await response.json();
-
+    
                 if (Array.isArray(data) && data.length > 0) {
                     generatedIdeas = data;
-                    output.innerHTML = data.map((idea, index) => `
+                    const generatedIdeasList = data.map((idea, index) => `
                         <div>
                             <input type="checkbox" id="idea-${index}" value="${idea}">
                             <label for="idea-${index}">${idea}</label>
                         </div>
                     `).join('');
+                    document.getElementById('generatedIdeasList').innerHTML = generatedIdeasList;
                 } else {
-                    output.innerHTML = "No ideas generated or an error occurred.";
+                    showPopup("No ideas generated or an error occurred.");
                 }
             } catch (error) {
-                output.innerHTML = "An error occurred while generating ideas.";
+                showPopup("An error occurred while generating ideas.");
                 console.error(error);
             }
         }
-
+    
         function saveSelected() {
             const selectedIdeas = [];
             generatedIdeas.forEach((idea, index) => {
@@ -76,16 +83,32 @@
                     selectedIdeas.push(idea);
                 }
             });
-
+    
+            const popupMessage = selectedIdeas.length > 0 
+                ? "Selected ideas saved!" 
+                : "Please select at least one idea to save.";
+    
             if (selectedIdeas.length > 0) {
                 const savedIdeas = JSON.parse(localStorage.getItem('savedIdeas')) || [];
                 savedIdeas.push(...selectedIdeas);
                 localStorage.setItem('savedIdeas', JSON.stringify(savedIdeas));
-                alert("Selected ideas saved!");
-            } else {
-                alert("Please select at least one idea to save.");
             }
+            
+            showPopup(popupMessage);
         }
-    </script>
+    
+        function showPopup(message) {
+            const popup = document.getElementById('popup');
+            const popupMessage = document.getElementById('popupMessage');
+            
+            popupMessage.textContent = message;
+            popup.style.display = 'flex';
+        }
+    
+        function closePopup() {
+            const popup = document.getElementById('popup');
+            popup.style.display = 'none';
+        }
+    </script>     
 </body>
 </html>

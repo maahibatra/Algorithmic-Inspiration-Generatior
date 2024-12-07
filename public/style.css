@@ -98,7 +98,7 @@ input::placeholder {
     justify-content: space-between;
     align-items: center;
     padding: 1vw;
-    font-size: clamp(20px, 1.3vw, 35px);
+    font-size: clamp(20px, 1.3vw, 40px);
     border-bottom: 0.15vw solid #4D804D;
     margin-bottom: 1vw;
     padding-bottom: 0.4vw;
@@ -124,7 +124,7 @@ input::placeholder {
 
 .ideasOutput {
     margin: 1.5vw 3vw;
-    font-size: clamp(20px, 0.7vw, 35px);
+    font-size: clamp(20px, 1vw, 35px);
     color: #B3D9B3;
 }
 
@@ -151,4 +151,97 @@ input::placeholder {
     background-color: #1A2A1A;
     color: #D1E7D1;
     border-color: #6FAF6F;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.popupContent {
+    background-color: #162116;
+    color: #B3D9B3;
+    padding: 0.8vw 1.2vw;
+    border-radius: 1vw;
+    text-align: center;
+    max-width: 20vw;
+    max-height: 10vw;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.popupMessage {
+    font-size: clamp(13px, 1vw, 35px);
+    margin-bottom: 0.5vw;
+}
+
+.popupClose {
+    background-color: #101710;
+    color: #B3D9B3;
+    border: 0.15vw solid #4D804D;
+    padding: 0.35vw 0.8vw;
+    border-radius: 0.5vw;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.popupClose:hover {
+    background-color: #1A2A1A;
+    color: #D1E7D1;
+    border-color: #6FAF6F;
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+input[type="checkbox"] + label {
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+    font-size: clamp(16px, 1vw, 20px);
+    color: #B3D9B3;
+}
+
+input[type="checkbox"] + label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #4D804D;
+    background-color: #101710;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+input[type="checkbox"]:checked + label::before {
+    background-color: #4D804D;
+    border-color: #6FAF6F;
+}
+
+input[type="checkbox"]:checked + label:hover::before {
+    background-color: #6FAF6F;
+    border-color: #4D804D;
+}
+
+input[type="checkbox"] + label:hover::before {
+    border-color: #6FAF6F;
+}
+
+input[type="checkbox"]:checked + label::after {
+    content: '✔';
+    position: absolute;
+    left: 4px;
+    top: 1px;
+    font-size: 14px;
+    color: white;
 }

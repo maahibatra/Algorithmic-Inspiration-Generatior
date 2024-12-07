@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(cors());
 
 app.post('/api/generate-ideas', async (req, res) => {
-    const prompt = "Generate inspiration only on the prompt " + req.body.prompt.trim() + ". 7-10 words per item, each item in a new line.";
+    const prompt = "Generate ideas only on the prompt " + req.body.prompt.trim() + ". 7-10 words per item, each item in a new line.";
     try {
         const response = await axios.post(
             'https://api-inference.huggingface.co/models/Qwen/Qwen2.5-Coder-32B-Instruct',
