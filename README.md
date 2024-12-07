@@ -21,7 +21,7 @@ The **Algorithmic Inspiration Generator (AIG)** is a creative tool that uses AI 
   
 ## NOTE
 - The project is currently local-based for simplicity. It is not yet deployed to a live environment, but feel free to clone and run it locally.
-- Watch a video demo here: ADD VIDEO LINK HERE.
+- Watch a video demo here: [Click Here To Watch](https://youtu.be/13lUwP7LPrQ)
 
 ## Prerequisites
 - Node.js (>= v16.0.0)
