@@ -4,25 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AIG</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="header">
-        <div class="title">AIG</div>
+        <div class="title">Algorithmic Inspiration Generator</div>
         <button class="headerButton" onclick="window.location.href='saved.html'">Saved</button>
-        <button class="headerButton" onclick="generateIdea(), saveInputPrompt(), window.location.href='output.html'">Generate</button>
     </div>
-    <input type="text" id="input" placeholder="Enter prompt">
-    <div class="output" id="output"></div>
+
+    <div class="note">-> I'm so sorry, but the AI is a bit glitchy with it's output &#58;&#40;</div>
+
+    <div class="input-section">
+        <input type="text" id="input" class="input" placeholder="Enter prompt">
+        <button class="inputButton" onclick="generateIdea()">Generate</button>
+    </div>
+
+    <div id="output" class="output">
+        <div class="outputHeader">Generated Ideas:</div>
+        <button class="outputButton" onclick="saveSelected()" id="saveButton">Save Selected Ideas</button>
+    </div>
+    <div id="generatedIdeasList" class="ideasOutput">No ideas yet. Enter a prompt to generate ideas.</div>
 
     <script>
-        function saveInputPrompt() {
-            const input = document.getElementById('input').value;
-            localStorage.setItem('inputPrompt', input);
-        }
+        let generatedIdeas = [];
 
         async function generateIdea() {
-            const input = document.getElementById('input');
-            const output = document.getElementById('output');
+            const input = document.getElementById('input').value.trim();
+            const output = document.getElementById('generatedIdeasList');
+            const saveButton = document.getElementById('saveButton');
+
+            if (!input) {
+                output.innerHTML = "Please enter a prompt.";
+                return;
+            }
+
             output.innerHTML = "Loading...";
 
             try {
@@ -31,26 +46,44 @@
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ prompt: input.value })
+                    body: JSON.stringify({ prompt: input })
                 });
 
                 const data = await response.json();
 
                 if (Array.isArray(data) && data.length > 0) {
+                    generatedIdeas = data;
                     output.innerHTML = data.map((idea, index) => `
                         <div>
                             <input type="checkbox" id="idea-${index}" value="${idea}">
                             <label for="idea-${index}">${idea}</label>
                         </div>
                     `).join('');
-
-                    localStorage.setItem('generatedIdeas', JSON.stringify(data));
                 } else {
                     output.innerHTML = "No ideas generated or an error occurred.";
                 }
             } catch (error) {
                 output.innerHTML = "An error occurred while generating ideas.";
                 console.error(error);
+            }
+        }
+
+        function saveSelected() {
+            const selectedIdeas = [];
+            generatedIdeas.forEach((idea, index) => {
+                const checkbox = document.getElementById(`idea-${index}`);
+                if (checkbox && checkbox.checked) {
+                    selectedIdeas.push(idea);
+                }
+            });
+
+            if (selectedIdeas.length > 0) {
+                const savedIdeas = JSON.parse(localStorage.getItem('savedIdeas')) || [];
+                savedIdeas.push(...selectedIdeas);
+                localStorage.setItem('savedIdeas', JSON.stringify(savedIdeas));
+                alert("Selected ideas saved!");
+            } else {
+                alert("Please select at least one idea to save.");
             }
         }
     </script>

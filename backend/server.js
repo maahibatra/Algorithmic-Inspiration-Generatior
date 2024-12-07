@@ -10,9 +10,7 @@ app.use(express.json());
 app.use(cors());
 
 app.post('/api/generate-ideas', async (req, res) => {
-    console.log('User input:', req.body.prompt);
-
-    const prompt = "Generate creative inspiration. Limit to 5 items, 7-10 words per item, different lines per item. Base the ideas on " + req.body.prompt.trim() + " Do not add any more ideas basis.";
+    const prompt = "Generate inspiration only on the prompt " + req.body.prompt.trim() + ". 7-10 words per item, each item in a new line.";
     try {
         const response = await axios.post(
             'https://api-inference.huggingface.co/models/Qwen/Qwen2.5-Coder-32B-Instruct',
@@ -33,7 +31,12 @@ app.post('/api/generate-ideas', async (req, res) => {
             const ideas = cleanText
                 .split('\n')
                 .filter(line => line.trim())
-                .map(line => line.replace(/^[\d\-\*\)\.]+\s*/, '').trim()); // Remove numbering, bullets, or symbols
+                .map(line => 
+                    line
+                        .replace(/^[\d\-\*\)\.]+\s*/, '')
+                        .replace(/[^a-zA-Z0-9.,'!? ]+/g, '')
+                        .trim()
+                );
 
             const limitedIdeas = ideas.slice(0, 5);
 
@@ -46,6 +49,7 @@ app.post('/api/generate-ideas', async (req, res) => {
         res.status(500).json({ error: 'Error processing your request' });
     }
 });
+
 
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);

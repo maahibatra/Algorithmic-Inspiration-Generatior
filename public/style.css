@@ -1,0 +1,154 @@
+body {
+    font-family: Didot, serif;
+    background-color: #101710;
+    color: #B3D9B3;
+}
+
+button {
+    font-family: Didot, serif;
+}
+
+input::placeholder {
+    font-family: Didot, serif;
+    color: #8FAF8F;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1vw;
+    font-size: clamp(25px, 2vw, 47px);
+    border-bottom: 0.3vw solid #4D804D;
+    padding-bottom: 0.4vw;
+}
+
+.headerButton {
+    margin-left: 0.3vw;
+    padding: 0.3vw 1vw;
+    font-size: clamp(18px, 1.4vw, 35px);
+    margin-top: 0.2vw;
+    cursor: pointer;
+    background-color: #101710;
+    color: #B3D9B3;
+    border: 0.2vw solid #4D804D;
+    border-radius: 0.5vw;
+    transition: all 0.3s ease;
+}
+
+.headerButton:hover {
+    background-color: #1A2A1A;
+    color: #D1E7D1;
+    border-color: #6FAF6F;
+}
+
+.note {
+    font-size: clamp(15px, 1vw, 25px);
+    padding: 0.3vw;
+    color: #B3D9B3;
+}
+
+.input-section {
+    display: flex;
+    margin-top: 20px;
+}
+
+.input {
+    width: 100vw;
+    padding: 0.6vw;
+    margin-left: 0.5vw;
+    background-color: #162116;
+    color: #B3D9B3;
+    font-size: clamp(13px, 0.8vw, 20px);
+    border: 0.2vw solid #4D804D;
+    border-radius: 0.5vw;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.input:hover {
+    background-color: #1F2F1F;
+}
+
+.input:focus {
+    background-color: #1F2F1F;
+    border-color: #6FAF6F;
+}
+
+.inputButton {
+    padding: 0.6vw 0.8vw;
+    margin: 0 0.5vw;
+    font-size: clamp(13px, 0.8vw, 20px);
+    cursor: pointer;
+    background-color: #101710;
+    color: #B3D9B3;
+    border: 0.2vw solid #4D804D;
+    border-radius: 0.5vw;
+    transition: all 0.3s ease;
+}
+
+.inputButton:hover {
+    background-color: #1A2A1A;
+    color: #D1E7D1;
+    border-color: #6FAF6F;
+}
+
+.output {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1vw;
+    font-size: clamp(20px, 1.3vw, 35px);
+    border-bottom: 0.15vw solid #4D804D;
+    margin-bottom: 1vw;
+    padding-bottom: 0.4vw;
+    color: #B3D9B3;
+}
+
+.outputButton {
+    padding: 0.5vw 0.8vw;
+    font-size: clamp(13px, 0.7vw, 25px);
+    cursor: pointer;
+    background-color: #101710;
+    color: #B3D9B3;
+    border: 0.2vw solid #4D804D;
+    border-radius: 0.5vw;
+    transition: all 0.3s ease;
+}
+
+.outputButton:hover {
+    background-color: #1A2A1A;
+    color: #D1E7D1;
+    border-color: #6FAF6F;
+}
+
+.ideasOutput {
+    margin: 1.5vw 3vw;
+    font-size: clamp(20px, 0.7vw, 35px);
+    color: #B3D9B3;
+}
+
+.savedIdeasList {
+    list-style-type: none;
+    margin: 1.5vw 3vw;
+    font-size: clamp(20px, 1.3vw, 35px);
+    color: #B3D9B3;
+}
+
+.deleteButton {
+    margin: 0.5vw;
+    padding: 0.3vw 0.8vw;
+    font-size: clamp(13px, 0.7vw, 25px);
+    cursor: pointer;
+    background-color: #101710;
+    color: #B3D9B3;
+    border: 0.2vw solid #4D804D;
+    border-radius: 0.5vw;
+    transition: all 0.3s ease;
+}
+
+.deleteButton:hover {
+    background-color: #1A2A1A;
+    color: #D1E7D1;
+    border-color: #6FAF6F;
+}

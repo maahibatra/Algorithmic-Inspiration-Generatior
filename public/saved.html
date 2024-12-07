@@ -3,42 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saved Ideas</title>
+    <title>AIG - Saved</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="header">
-        <div class="title">AIG - Saved</div>
-        <button class="headerButton" onclick="window.location.href='index.html'">Home</button>
-        <button class="headerButton" onclick="window.location.href='saved.html'">Saved</button>
-        <button onclick="clearAll()" class="headerButton">Clear All</button>
+        <div class="title">Algorithmic Inspiration Generator - Saved</div>
+        <div>
+            <button class="headerButton" onclick="window.location.href='index.html'">Home</button>
+            <button onclick="clearAll()" class="headerButton">Clear All</button>
+        </div>
     </div>
-    <ul id="saved-ideas-list"></ul>
+    <ul id="savedIdeasList" class="savedIdeasList"></ul>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const savedIdeas = JSON.parse(localStorage.getItem('savedIdeas')) || [];
-            const savedIdeasList = document.getElementById('saved-ideas-list');
-
-            savedIdeas.forEach((idea, index) => {
-                const li = document.createElement('li');
-                li.innerHTML = `
-                    ${idea} <button onclick="deleteIdea(${index})">Delete</button>
-                `;
-                savedIdeasList.appendChild(li);
-            });
+            const savedIdeasList = document.getElementById('savedIdeasList');
+    
+            if (savedIdeas.length === 0) {
+                savedIdeasList.innerHTML = `<li>Generate and save ideas for them to show up here!</li>`;
+            } else {
+                savedIdeas.forEach((idea, index) => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `
+                        ${idea} <button onclick="deleteIdea(${index})" class= "deleteButton">Delete</button>
+                    `;
+                    savedIdeasList.appendChild(li);
+                });
+            }
         });
-
+    
         function deleteIdea(index) {
             const savedIdeas = JSON.parse(localStorage.getItem('savedIdeas')) || [];
-            savedIdeas.splice(index, 1)
+            savedIdeas.splice(index, 1);
             localStorage.setItem('savedIdeas', JSON.stringify(savedIdeas));
             window.location.reload();
         }
-
+    
         function clearAll() {
             localStorage.removeItem('savedIdeas');
             window.location.reload();
         }
-    </script>
+    </script>    
 </body>
 </html>
