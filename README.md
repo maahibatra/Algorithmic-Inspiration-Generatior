@@ -1,27 +1,10 @@
 # Algorithmic Inspiration Generator (AIG)
 
-The **Algorithmic Inspiration Generator (AIG)** is a creative tool that uses AI to generate innovative ideas based on your prompts! It leverages Hugging Face's NLP models to generate algorithmic and programming-related ideas, helping you spark creativity.
-
-## Features
-
-- **Idea Generation**:
-    - Generate algorithmic ideas based on a user-defined prompt.
-
-- **Save Ideas**:
-    - Save your generated ideas to local storage for later reference.
-
-- **AI-Powered Inspiration**:
-    - Receive inspiration from AI based on a prompt you enter. Whether it's for coding, algorithms, or general creativity, the AI provides suggestions!
-
-## Usage
-- Enter a prompt describing the type of idea you want to generate and click the **Generate** button.
-- The AI will process your input and generate a list of related ideas, which will appear below the input field.
-- You can select ideas from the list and click **Save Selected Ideas** to store them locally.
-- A popup will confirm whether your ideas were saved successfully.
+The Algorithmic Inspiration Generator (AIG) is a creative tool that uses AI to generate innovative ideas based on your prompts! You can also save the generated ideas for future need, using localStorage.
   
 ## NOTE
 - The project is currently local-based for simplicity. It is not yet deployed to a live environment, but feel free to clone and run it locally.
-- Watch a video demo here: [Click Here To Watch](https://youtu.be/13lUwP7LPrQ)
+- Watch a video demo here: [Click Here To Watch](https://youtu.be/2DEqOB2eNAU)
 
 ## Prerequisites
 - Node.js (>= v16.0.0)
@@ -62,3 +45,8 @@ npm start
 - The app will be available at a http://localhost:3000.
 
 ## HAVE FUN!!!!
+
+## Usage of AI - AI has been used in the creation of this project, specifically ChatGPT.
+- AI has been used in debugging errors.
+- AI has been used in implementation of localStorage.
+- AI has been used in color palletes.
