@@ -1,7 +1,14 @@
 body {
     font-family: Didot, serif;
-    background-color: #101710;
-    color: #B3D9B3;
+    background: url(aigwlpr.webp);
+    background-size: cover;
+    backdrop-filter: blur(0.1vw);
+    color: #bdb7f0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+    padding: 2vw 1vw;
 }
 
 button {
@@ -10,7 +17,7 @@ button {
 
 input::placeholder {
     font-family: Didot, serif;
-    color: #8FAF8F;
+    color: #bdb7f0;
 }
 
 .header {
@@ -18,79 +25,91 @@ input::placeholder {
     justify-content: space-between;
     align-items: center;
     padding: 1vw;
-    font-size: clamp(25px, 2vw, 47px);
-    border-bottom: 0.3vw solid #4D804D;
+    font-size: clamp(16px, 3vw, 48px);
+    border-bottom: 0.3vw solid #2e2f50;
     padding-bottom: 0.4vw;
 }
 
 .headerButton {
     margin-left: 0.3vw;
     padding: 0.3vw 1vw;
-    font-size: clamp(18px, 1.4vw, 35px);
+    font-size: clamp(14px, 2vw, 32px);
     margin-top: 0.2vw;
     cursor: pointer;
-    background-color: #101710;
-    color: #B3D9B3;
-    border: 0.2vw solid #4D804D;
+    background-color: rgba(28, 20, 35, 0.3);
+    color: #bdb7f0;
+    border: 0.2vw solid #2e2f50;
     border-radius: 0.5vw;
     transition: all 0.3s ease;
 }
 
 .headerButton:hover {
-    background-color: #1A2A1A;
-    color: #D1E7D1;
-    border-color: #6FAF6F;
+    background-color: rgba(28, 20, 35, 0.8);
+    color: #d2cff1;
+    border-color: #393a59;
 }
 
 .note {
-    font-size: clamp(15px, 1vw, 25px);
+    font-size: clamp(12px, 1.5vw, 24px);
     padding: 0.3vw;
-    color: #B3D9B3;
+    color: #dedafb;
 }
 
-.input-section {
+.inputSection {
     display: flex;
-    margin-top: 20px;
+    margin-top: 1vw;
+    margin-bottom: 2vw;
 }
 
 .input {
+    font-family: Didot, serif;
     width: 100vw;
     padding: 0.6vw;
     margin-left: 0.5vw;
-    background-color: #162116;
-    color: #B3D9B3;
-    font-size: clamp(13px, 0.8vw, 20px);
-    border: 0.2vw solid #4D804D;
+    background-color: rgba(28, 20, 35, 0.8);
+    border: 0.2vw solid #1c1423;
+    color: #dedafb;
+    font-size: clamp(14px, 2vw, 32px);
     border-radius: 0.5vw;
     outline: none;
     transition: all 0.3s ease;
 }
 
 .input:hover {
-    background-color: #1F2F1F;
+    background-color: rgba(29, 21, 37, 0.8);
 }
 
 .input:focus {
-    background-color: #1F2F1F;
-    border-color: #6FAF6F;
+    background-color: rgba(42, 31, 52, 0.8);
+    border-color: #393a59;
 }
 
 .inputButton {
     padding: 0.6vw 0.8vw;
     margin: 0 0.5vw;
-    font-size: clamp(13px, 0.8vw, 20px);
+    font-size: clamp(14px, 2vw, 32px);
     cursor: pointer;
-    background-color: #101710;
-    color: #B3D9B3;
-    border: 0.2vw solid #4D804D;
+    background-color: rgba(28, 20, 35, 0.3);
+    color: #bdb7f0;
+    border: 0.2vw solid #2e2f50;
     border-radius: 0.5vw;
     transition: all 0.3s ease;
 }
 
 .inputButton:hover {
-    background-color: #1A2A1A;
-    color: #D1E7D1;
-    border-color: #6FAF6F;
+    background-color: rgba(28, 20, 35, 0.8);
+    color: #d2cff1;
+    border-color: #393a59;
+}
+
+.generation {
+    background-color: rgba(28, 20, 35, 0.8);
+    border: 0.3vw solid #1c1423;
+    padding: 1vw 2vw;
+    margin: 0 1vw;
+    border-radius: 1vw;
+    flex: 1;
+    max-height: calc(100vh - 22vw);
 }
 
 .output {
@@ -98,41 +117,48 @@ input::placeholder {
     justify-content: space-between;
     align-items: center;
     padding: 1vw;
-    font-size: clamp(20px, 1.3vw, 40px);
-    border-bottom: 0.15vw solid #4D804D;
+    font-size: clamp(18px, 2.5vw, 40px);
+    border-bottom: 0.15vw solid #2e2f50;
     margin-bottom: 1vw;
     padding-bottom: 0.4vw;
-    color: #B3D9B3;
+    color: #bdb7f0;
 }
 
 .outputButton {
     padding: 0.5vw 0.8vw;
-    font-size: clamp(13px, 0.7vw, 25px);
+    font-size: clamp(12px, 1.5vw, 24px);
     cursor: pointer;
-    background-color: #101710;
-    color: #B3D9B3;
-    border: 0.2vw solid #4D804D;
+    background-color: rgba(28, 20, 35, 0.3);
+    color: #bdb7f0;
+    border: 0.2vw solid #2e2f50;
     border-radius: 0.5vw;
     transition: all 0.3s ease;
 }
 
 .outputButton:hover {
-    background-color: #1A2A1A;
-    color: #D1E7D1;
-    border-color: #6FAF6F;
+    background-color: rgba(28, 20, 35, 0.8);
+    color: #d2cff1;
+    border-color: #393a59;
 }
 
 .ideasOutput {
     margin: 1.5vw 3vw;
-    font-size: clamp(20px, 1vw, 35px);
-    color: #B3D9B3;
+    font-size: clamp(16px, 1.5vw, 45px);
+    color: #dedafb;
 }
 
 .savedIdeasList {
     list-style-type: none;
     margin: 1.5vw 3vw;
-    font-size: clamp(20px, 1.3vw, 35px);
-    color: #B3D9B3;
+    font-size: clamp(16px, 1.3vw, 35px);
+    color: #dedafb;
+    background-color: rgba(28, 20, 35, 0.8);
+    border: 0.3vw solid #1c1423;
+    padding: 1vw 2vw;
+    margin: 1.5vw 1vw;
+    border-radius: 1vw;
+    flex: 1;
+    max-height: calc(100vh - 13.5vw);
 }
 
 .deleteButton {
@@ -140,17 +166,17 @@ input::placeholder {
     padding: 0.3vw 0.8vw;
     font-size: clamp(13px, 0.7vw, 25px);
     cursor: pointer;
-    background-color: #101710;
-    color: #B3D9B3;
-    border: 0.2vw solid #4D804D;
+    background-color: rgba(28, 20, 35, 0.3);
+    color: #bdb7f0;
+    border: 0.2vw solid #2e2f50;
     border-radius: 0.5vw;
     transition: all 0.3s ease;
 }
 
 .deleteButton:hover {
-    background-color: #1A2A1A;
-    color: #D1E7D1;
-    border-color: #6FAF6F;
+    background-color: rgba(28, 20, 35, 0.8);
+    color: #d2cff1;
+    border-color: #393a59;
 }
 
 .popup {
@@ -167,9 +193,9 @@ input::placeholder {
 }
 
 .popupContent {
-    background-color: #162116;
-    color: #B3D9B3;
-    padding: 0.8vw 1.2vw;
+    background-color: rgba(28, 20, 35, 0.8);
+    color: #bdb7f0;
+    padding: 1.5vw;
     border-radius: 1vw;
     text-align: center;
     max-width: 20vw;
@@ -178,14 +204,15 @@ input::placeholder {
 }
 
 .popupMessage {
-    font-size: clamp(13px, 1vw, 35px);
+    font-size: clamp(13px, 2vw, 35px);
     margin-bottom: 0.5vw;
 }
 
 .popupClose {
-    background-color: #101710;
-    color: #B3D9B3;
-    border: 0.15vw solid #4D804D;
+    background-color: rgba(28, 20, 35, 0.3);
+    font-size: clamp(13px, 1.5vw, 35px);
+    color: #bdb7f0;
+    border: 0.15vw solid #2e2f50;
     padding: 0.35vw 0.8vw;
     border-radius: 0.5vw;
     cursor: pointer;
@@ -193,9 +220,9 @@ input::placeholder {
 }
 
 .popupClose:hover {
-    background-color: #1A2A1A;
-    color: #D1E7D1;
-    border-color: #6FAF6F;
+    background-color: rgba(28, 20, 35, 0.8);
+    color: #d2cff1;
+    border-color: #393a59;
 }
 
 input[type="checkbox"] {
@@ -207,7 +234,7 @@ input[type="checkbox"] + label {
     padding-left: 30px;
     cursor: pointer;
     font-size: clamp(16px, 1vw, 20px);
-    color: #B3D9B3;
+    color: #bdb7f0;
 }
 
 input[type="checkbox"] + label::before {
@@ -217,24 +244,24 @@ input[type="checkbox"] + label::before {
     top: 0;
     width: 20px;
     height: 20px;
-    border: 2px solid #4D804D;
+    border: 2px solid #2e2f50;
     background-color: #101710;
     border-radius: 4px;
     transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 input[type="checkbox"]:checked + label::before {
-    background-color: #4D804D;
-    border-color: #6FAF6F;
+    background-color: #2e2f50;
+    border-color: #393a59;
 }
 
 input[type="checkbox"]:checked + label:hover::before {
-    background-color: #6FAF6F;
-    border-color: #4D804D;
+    background-color: #393a59;
+    border-color: #2e2f50;
 }
 
 input[type="checkbox"] + label:hover::before {
-    border-color: #6FAF6F;
+    border-color: #393a59;
 }
 
 input[type="checkbox"]:checked + label::after {
@@ -242,6 +269,6 @@ input[type="checkbox"]:checked + label::after {
     position: absolute;
     left: 4px;
     top: 1px;
-    font-size: 14px;
+    font-size: clamp(10px, 0.9vw, 14px);
     color: white;
 }

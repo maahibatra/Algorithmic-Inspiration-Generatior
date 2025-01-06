@@ -14,16 +14,18 @@
 
     <div class="note">-> I'm so sorry, but the AI is a bit glitchy with it's output &#58;&#40;</div>
 
-    <div class="input-section">
+    <div class="inputSection">
         <input type="text" id="input" class="input" placeholder="Enter prompt">
         <button class="inputButton" onclick="generateIdea()">Generate</button>
     </div>
 
-    <div id="output" class="output">
-        <div class="outputHeader">Generated Ideas:</div>
-        <button class="outputButton" onclick="saveSelected()" id="saveButton">Save Selected Ideas</button>
+    <div class="generation">
+        <div id="output" class="output">
+            <div class="outputHeader">Generated Ideas:</div>
+            <button class="outputButton" onclick="saveSelected()" id="saveButton">Save Selected Ideas</button>
+        </div>
+        <div id="generatedIdeasList" class="ideasOutput">No ideas yet. Enter a prompt to generate ideas.</div>
     </div>
-    <div id="generatedIdeasList" class="ideasOutput">No ideas yet. Enter a prompt to generate ideas.</div>
 
     <div id="popup" class="popup">
         <div class="popupContent">
